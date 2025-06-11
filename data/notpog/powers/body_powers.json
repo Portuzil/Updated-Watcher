@@ -1,0 +1,138 @@
+{
+  "type": "origins:multiple",
+  "sounds": {
+    "type": "origins:action_over_time",
+    "entity_action": {
+      "type": "origins:chance",
+      "action": {
+        "type": "origins:and",
+        "actions": [
+          {
+            "type": "origins:play_sound",
+            "sound": "minecraft:block.sculk.charge",
+            "category": "master",
+            "volume": 5,
+            "pitch": 0
+          },
+          {
+            "type": "origins:spawn_particles",
+            "particle": {
+              "type": "minecraft:block",
+              "params": "minecraft:redstone_block"
+            },
+            "count": 30,
+            "speed": 0.5,
+            "force": true,
+            "spread": {
+              "x": 0.25,
+              "y": 0.25,
+              "z": 0.25
+            }
+          }
+        ]
+      },
+      "chance": 0.05
+    },
+    "rising_action": {
+      "type": "origins:and",
+      "actions": [
+        {
+          "type": "origins:play_sound",
+          "sound": "minecraft:entity.strider.ambient",
+          "category": "master",
+          "volume": 1,
+          "pitch": 0
+        },
+        {
+          "type": "origins:play_sound",
+          "sound": "minecraft:block.sculk.place",
+          "category": "master",
+          "volume": 1,
+          "pitch": 0
+        },
+        {
+          "type": "origins:spawn_particles",
+          "particle": {
+            "type": "minecraft:block",
+            "params": "minecraft:redstone_block"
+          },
+          "count": 30,
+          "speed": 0.0,
+          "force": true,
+          "spread": {
+            "x": 0.25,
+            "y": 0.25,
+            "z": 0.25
+          }
+        }
+      ]
+    },
+    "falling_action": {
+      "type": "origins:and",
+      "actions": [
+        {
+          "type": "origins:play_sound",
+          "sound": "minecraft:entity.strider.death",
+          "category": "master",
+          "volume": 1,
+          "pitch": 0
+        },
+        {
+          "type": "origins:play_sound",
+          "sound": "minecraft:block.sculk.break",
+          "category": "master",
+          "volume": 1,
+          "pitch": 0
+        },
+        {
+          "type": "origins:spawn_particles",
+          "particle": {
+            "type": "minecraft:block",
+            "params": "minecraft:redstone_block"
+          },
+          "count": 30,
+          "speed": 0.0,
+          "force": true,
+          "spread": {
+            "x": 0.25,
+            "y": 0.25,
+            "z": 0.25
+          }
+        }
+      ]
+    },
+    "interval": 1
+  },
+  "invis": {
+    "type": "origins:invisibility",
+    "render_armor": true
+  },
+  "when_hit": {
+    "type": "origins:self_action_when_hit",
+    "entity_action": {
+      "type": "origins:and",
+      "actions": [
+        {
+          "type": "origins:execute_command",
+          "command": "execute at @s as @a[tag=wr_watcher] if score @s wr_uuid1 = @e[distance=..0.5,limit=1,tag=wr_body] wr_uuid1 if score @s wr_uuid2 = @e[distance=..0.5,limit=1,tag=wr_body] wr_uuid2 if score @s wr_uuid3 = @e[distance=..0.5,limit=1,tag=wr_body] wr_uuid3 if score @s wr_uuid4 = @e[distance=..0.5,limit=1,tag=wr_body] wr_uuid4 run tp @s ~ ~1.5 ~"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "forceload remove ~ ~ ~ ~"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "resource set @p[sort=nearest,tag=wr_watcher,limit=1] notpog:view_camera_is_viewing 0"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "tag @p[sort=nearest,tag=wr_watcher,limit=1] remove wr_viewing"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "kill @s"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,234 @@
+{
+  "type": "origins:multiple",
+  "sounds": {
+    "type": "origins:action_over_time",
+    "entity_action": {
+      "type": "origins:chance",
+      "action": {
+        "type": "origins:play_sound",
+        "sound": "minecraft:entity.strider.ambient",
+        "category": "master",
+        "volume": 1,
+        "pitch": 2
+      },
+      "chance": 0.001
+    },
+    "rising_action": {
+      "type": "origins:and",
+      "actions": [
+        {
+          "type": "origins:play_sound",
+          "sound": "minecraft:entity.strider.ambient",
+          "category": "master",
+          "volume": 1,
+          "pitch": 2
+        },
+        {
+          "type": "origins:play_sound",
+          "sound": "minecraft:block.sculk.place",
+          "category": "master",
+          "volume": 1,
+          "pitch": 2
+        },
+        {
+          "type": "origins:spawn_particles",
+          "particle": {
+            "type": "minecraft:block",
+            "params": "minecraft:redstone_block"
+          },
+          "count": 15,
+          "speed": 0.0,
+          "force": true,
+          "spread": {
+            "x": 0.25,
+            "y": 0.25,
+            "z": 0.25
+          }
+        }
+      ]
+    },
+    "falling_action": {
+      "type": "origins:and",
+      "actions": [
+        {
+          "type": "origins:play_sound",
+          "sound": "minecraft:entity.strider.death",
+          "category": "master",
+          "volume": 1,
+          "pitch": 2
+        },
+        {
+          "type": "origins:play_sound",
+          "sound": "minecraft:block.sculk.break",
+          "category": "master",
+          "volume": 1,
+          "pitch": 2
+        },
+        {
+          "type": "origins:spawn_particles",
+          "particle": {
+            "type": "minecraft:block",
+            "params": "minecraft:redstone_block"
+          },
+          "count": 15,
+          "speed": 0.0,
+          "force": true,
+          "spread": {
+            "x": 0.25,
+            "y": 0.25,
+            "z": 0.25
+          }
+        }
+      ]
+    },
+    "interval": 1
+  },
+  "invis": {
+    "type": "origins:invisibility",
+    "render_armor": true
+  },
+  "viewing_mode": {
+    "type": "origins:action_over_time",
+    "entity_action": {
+      "type": "origins:execute_command",
+      "command": "execute as @s run execute at @a[sort=nearest,limit=1,tag=wr_watcher,tag=wr_viewing,distance=..1] rotated as @p[sort=nearest,limit=1,tag=wr_watcher,tag=wr_viewing,distance=..1] run tp @s ~ ~ ~ ~ ~"
+    },
+    "interval": 1,
+    "condition": {
+      "type": "origins:command",
+      "command": "execute at @p[sort=nearest,limit=1,tag=wr_watcher,tag=wr_viewing,distance=..1] as @s if score @s wr_uuid1 = @p[sort=nearest,limit=1,tag=wr_watcher,tag=wr_viewing,distance=..1] wr_uuid1 if score @s wr_uuid2 = @p[sort=nearest,limit=1,tag=wr_watcher,tag=wr_viewing,distance=..1] wr_uuid2 if score @s wr_uuid3 = @p[sort=nearest,limit=1,tag=wr_watcher,tag=wr_viewing,distance=..1] wr_uuid3 if score @s wr_uuid4 = @p[sort=nearest,limit=1,tag=wr_watcher,tag=wr_viewing,distance=..1] wr_uuid4",
+      "comparison": "==",
+      "compare_to": 1
+    }
+  },
+  "suffocate": {
+    "type": "origins:modify_damage_taken",
+    "damage_condition": {
+      "type": "origins:name",
+      "name": "inWall"
+    },
+    "modifier": {
+      "name": "Weak to cursed items",
+      "operation": "set_total",
+      "value": 0
+    }
+  },
+  "killed_when_viewing": {
+    "type": "origins:self_action_when_hit",
+    "entity_action": {
+      "type": "origins:and",
+      "actions": [
+        {
+          "type": "origins:execute_command",
+          "command": "execute as @p[sort=nearest,limit=1,tag=wr_watcher,tag=wr_viewing,distance=..1] run resource change @s notpog:view_camera_count -1"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "execute at @e[tag=wr_body] as @a[sort=nearest,tag=wr_watcher,tag=wr_viewing] if score @s wr_uuid1 = @e[distance=..1,limit=1,tag=wr_body] wr_uuid1 if score @s wr_uuid2 = @e[distance=..1,limit=1,tag=wr_body] wr_uuid2 if score @s wr_uuid3 = @e[distance=..1,limit=1,tag=wr_body] wr_uuid3 if score @s wr_uuid4 = @e[distance=..1,limit=1,tag=wr_body] wr_uuid4 run tp @s ~ ~1.5 ~"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "execute at @e[tag=wr_body] as @s if score @s wr_uuid1 = @e[distance=..1,limit=1,tag=wr_body] wr_uuid1 if score @s wr_uuid2 = @e[distance=..1,limit=1,tag=wr_body] wr_uuid2 if score @s wr_uuid3 = @e[distance=..1,limit=1,tag=wr_body] wr_uuid3 if score @s wr_uuid4 = @e[distance=..1,limit=1,tag=wr_body] wr_uuid4 run kill @e[distance=..1,limit=1,tag=wr_body]"
+        },
+        {
+          "type": "origins:play_sound",
+          "sound": "minecraft:entity.strider.death",
+          "category": "master",
+          "volume": 1,
+          "pitch": 2
+        },
+        {
+          "type": "origins:play_sound",
+          "sound": "minecraft:block.sculk.break",
+          "category": "master",
+          "volume": 1,
+          "pitch": 2
+        },
+        {
+          "type": "origins:spawn_particles",
+          "particle": {
+            "type": "minecraft:block",
+            "params": "minecraft:redstone_block"
+          },
+          "count": 15,
+          "speed": 0.0,
+          "force": true,
+          "spread": {
+            "x": 0.25,
+            "y": 0.25,
+            "z": 0.25
+          }
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "execute as @p[sort=nearest,limit=1,tag=wr_watcher,tag=wr_viewing,distance=..1] run resource set @s notpog:view_camera_is_viewing 0"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "tag @p[sort=nearest,limit=1,tag=wr_watcher,tag=wr_viewing,distance=..1] remove wr_viewing"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "forceload remove ~ ~ ~ ~"
+        }
+      ]
+    },
+    "condition": {
+      "type": "origins:command",
+      "command": "execute at @p[sort=nearest,limit=1,tag=wr_watcher,tag=wr_viewing,distance=..1] as @s if score @s wr_uuid1 = @p[sort=nearest,limit=1,tag=wr_watcher,tag=wr_viewing,distance=..1] wr_uuid1 if score @s wr_uuid2 = @p[sort=nearest,limit=1,tag=wr_watcher,tag=wr_viewing,distance=..1] wr_uuid2 if score @s wr_uuid3 = @p[sort=nearest,limit=1,tag=wr_watcher,tag=wr_viewing,distance=..1] wr_uuid3 if score @s wr_uuid4 = @p[sort=nearest,limit=1,tag=wr_watcher,tag=wr_viewing,distance=..1] wr_uuid4",
+      "comparison": "==",
+      "compare_to": 1
+    }
+  },
+  "killed_when_not_viewing": {
+    "type": "origins:self_action_when_hit",
+    "entity_action": {
+      "type": "origins:and",
+      "actions": [
+        {
+          "type": "origins:execute_command",
+          "command": "execute at @a[sort=nearest,tag=wr_watcher] as @s if score @s wr_uuid1 = @p[sort=nearest,limit=1,tag=wr_watcher,distance=..1] wr_uuid1 if score @s wr_uuid2 = @p[sort=nearest,limit=1,tag=wr_watcher,distance=..1] wr_uuid2 if score @s wr_uuid3 = @p[sort=nearest,limit=1,tag=wr_watcher,distance=..1] wr_uuid3 if score @s wr_uuid4 = @p[sort=nearest,limit=1,tag=wr_watcher,distance=..1] wr_uuid4 run resource change @p[sort=nearest,limit=1,tag=wr_watcher,distance=..1] notpog:view_camera_count -1"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "forceload remove ~ ~ ~ ~"
+        },
+        {
+          "type": "origins:play_sound",
+          "sound": "minecraft:entity.strider.death",
+          "category": "master",
+          "volume": 1,
+          "pitch": 2
+        },
+        {
+          "type": "origins:play_sound",
+          "sound": "minecraft:block.sculk.break",
+          "category": "master",
+          "volume": 1,
+          "pitch": 2
+        },
+        {
+          "type": "origins:spawn_particles",
+          "particle": {
+            "type": "minecraft:block",
+            "params": "minecraft:redstone_block"
+          },
+          "count": 15,
+          "speed": 0.0,
+          "force": true,
+          "spread": {
+            "x": 0.25,
+            "y": 0.25,
+            "z": 0.25
+          }
+        }
+      ]
+    },
+    "condition": {
+      "type": "origins:command",
+      "command": "execute at @p[sort=nearest,limit=1,tag=wr_watcher,tag=wr_viewing,distance=..1] as @s if score @s wr_uuid1 = @p[sort=nearest,limit=1,tag=wr_watcher,tag=wr_viewing,distance=..1] wr_uuid1 if score @s wr_uuid2 = @p[sort=nearest,limit=1,tag=wr_watcher,tag=wr_viewing,distance=..1] wr_uuid2 if score @s wr_uuid3 = @p[sort=nearest,limit=1,tag=wr_watcher,tag=wr_viewing,distance=..1] wr_uuid3 if score @s wr_uuid4 = @p[sort=nearest,limit=1,tag=wr_watcher,tag=wr_viewing,distance=..1] wr_uuid4",
+      "comparison": "==",
+      "compare_to": 0
+    }
+  }
+}

@@ -1,0 +1,248 @@
+{
+  "name": "§a§nSplice",
+  "description": "You are able to splice yourself into a smaller eye. While small, you move faster and can climb blocks at the cost of 3 hearts. However, you are unable to deal damage, use Eyelings and items.",
+
+  "badges": [
+    {
+      "type": "origins:keybind",
+      "sprite": "origins:textures/gui/badge/active.png",
+      "text": "Trigger with %s while Sneaking!"
+    }
+  ],
+
+  "type": "origins:multiple",
+  "mini_mode": {
+    "type": "origins:resource",
+    "min": 0,
+    "max": 1,
+    "hud_render": {
+      "should_render": true,
+      "sprite_location": "origins:textures/gui/community/huang/resource_bar_01.png",
+      "bar_index": 9,
+      "condition": {
+        "type": "origins:resource",
+        "resource": "*:*_mini_mode",
+        "comparison": "==",
+        "compare_to": 1
+      }
+    }
+  },
+  "health": {
+    "type": "origins:conditioned_attribute",
+    "modifier": {
+      "attribute": "minecraft:generic.max_health",
+      "operation": "addition",
+      "value": -6,
+      "name": "Less_health"
+    },
+    "tick_rate": 1,
+    "condition": {
+      "type": "origins:resource",
+      "resource": "*:*_mini_mode",
+      "comparison": "==",
+      "compare_to": 1
+    }
+  },
+  "no_item": {
+    "type": "origins:prevent_item_use",
+    "condition": {
+      "type": "origins:resource",
+      "resource": "*:*_mini_mode",
+      "comparison": "==",
+      "compare_to": 1
+    }
+  },
+  "no_dmg": {
+    "type": "origins:modify_damage_dealt",
+    "modifier": {
+      "operation": "multiply_total",
+      "value": -1
+    },
+    "condition": {
+      "type": "origins:resource",
+      "resource": "*:*_mini_mode",
+      "comparison": "==",
+      "compare_to": 1
+    }
+  },
+  "climb": {
+    "type": "origins:climbing",
+    "condition": {
+      "type": "origins:and",
+      "conditions": [
+        {
+          "type": "origins:or",
+          "conditions": [
+            {
+              "type": "origins:block_collision",
+              "offset_x": 0.1,
+              "offset_z": 0.1,
+              "offset_y": 0.1
+            },
+            {
+              "type": "origins:block_collision",
+              "offset_x": -0.1,
+              "offset_z":  -0.1,
+              "offset_y": 0.1
+            }
+          ]
+        },
+        {
+          "type": "origins:resource",
+          "resource": "*:*_mini_mode",
+          "comparison": "==",
+          "compare_to": 1
+        }
+      ]
+    }
+  },
+  "faster": {
+    "type": "origins:conditioned_attribute",
+    "modifier": {
+      "attribute": "minecraft:generic.movement_speed",
+      "operation": "addition",
+      "value": 0.025,
+      "name": "Increased sprinting speed"
+    },
+    "tick_rate": 1,
+    "condition": {
+      "type": "origins:resource",
+      "resource": "*:*_mini_mode",
+      "comparison": "==",
+      "compare_to": 1
+    }
+  },
+  "active": {
+    "type": "origins:active_self",
+    "entity_action": {
+      "type": "origins:and",
+      "actions": [
+        {
+          "type": "origins:if_else",
+          "condition": {
+            "type": "origins:resource",
+            "resource": "*:*_mini_mode",
+            "comparison": "==",
+            "compare_to": 0
+          },
+          "if_action": {
+            "type": "origins:and",
+            "actions": [
+              {
+                "type": "origins:change_resource",
+                "resource": "*:*_mini_mode",
+                "change": 1,
+                "operation": "set"
+              },
+              {
+                "type": "origins:execute_command",
+                "command": "scale set pehkui:height .25 @s"
+              },
+              {
+                "type": "origins:execute_command",
+                "command": "scale set pehkui:width .25 @s"
+              },
+              {
+                "type": "origins:and",
+                "actions": [
+                  {
+                    "type": "origins:play_sound",
+                    "sound": "minecraft:block.sculk.place",
+                    "category": "master",
+                    "volume": 1,
+                    "pitch": 0
+                  },
+                  {
+                    "type": "origins:spawn_particles",
+                    "particle": {
+                      "type": "minecraft:block",
+                      "params": "minecraft:redstone_block"
+                    },
+                    "count": 15,
+                    "speed": 0.0,
+                    "force": true,
+                    "spread": {
+                      "x": 0.25,
+                      "y": 0.25,
+                      "z": 0.25
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "else_action": {
+            "type": "origins:and",
+            "actions": [
+              {
+                "type": "origins:change_resource",
+                "resource": "*:*_mini_mode",
+                "change": 0,
+                "operation": "set"
+              },
+              {
+                "type": "origins:execute_command",
+                "command": "scale set pehkui:height 1 @s"
+              },
+              {
+                "type": "origins:execute_command",
+                "command": "scale set pehkui:width 1 @s"
+              },
+              {
+                "type": "origins:and",
+                "actions": [
+                  {
+                    "type": "origins:play_sound",
+                    "sound": "minecraft:block.sculk.break",
+                    "category": "master",
+                    "volume": 1,
+                    "pitch": 0
+                  },
+                  {
+                    "type": "origins:spawn_particles",
+                    "particle": {
+                      "type": "minecraft:block",
+                      "params": "minecraft:redstone_block"
+                    },
+                    "count": 30,
+                    "speed": 0.0,
+                    "force": true,
+                    "spread": {
+                      "x": 0.25,
+                      "y": 0.25,
+                      "z": 0.25
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "cooldown": 1,
+    "hud_render": {
+      "should_render": false,
+      "sprite_location": "origins:textures/gui/community/spiderkolo/resource_bar_03.png",
+      "bar_index": 7
+    },
+    "key": {
+      "key": "key.origins.secondary_active",
+      "continuous": false
+    },
+    "condition": {
+      "type": "origins:and",
+      "conditions": [
+        {
+          "type": "origins:resource",
+          "resource": "*:view_camera_is_viewing",
+          "comparison": "==",
+          "compare_to": 0
+        },
+        {
+          "type": "origins:sneaking"
+        }
+      ]
+    }
+  }
+}

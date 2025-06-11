@@ -1,0 +1,30 @@
+{
+  "name": "§c§nIsolation",
+  "description": "You are 25% weaker when players are nearby...",
+
+  "badges": [
+    {
+      "type": "origins:tooltip",
+      "sprite": "origins:textures/gui/badge/info.png",
+      "text": "Any player within 10 Blocks makes you weaker!"
+    }
+  ],
+
+  "type": "origins:modify_damage_dealt",
+  "modifier": {
+    "operation": "multiply_base",
+    "value": -0.25,
+    "name": "Less dmg"
+  },
+  "condition": {
+    "type": "origins:and",
+    "conditions": [
+      {
+        "type": "origins:command",
+        "command": "execute if entity @a[distance=1..10] run playsound minecraft:block.sculk.hit master @s ~ ~ ~ 1 2",
+        "comparison": ">=",
+        "compare_to": 1
+      }
+    ]
+  }
+}

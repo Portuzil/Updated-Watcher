@@ -1,0 +1,140 @@
+{
+  "name": "§a§nStalking Stare",
+  "description": "By Sneaking while looking at an entity for a prolonged amount of time, you can paralyze them for a small duration, but once you do they know where you are...",
+
+  "type": "origins:multiple",
+  "bar": {
+    "type": "origins:resource",
+    "min": 0,
+    "max": 100,
+    "hud_render": {
+      "should_render": true,
+      "sprite_location": "origins:textures/gui/community/spiderkolo/resource_bar_02.png",
+      "bar_index": 17,
+      "condition": {
+        "type": "origins:resource",
+        "resource": "*:*_bar",
+        "comparison": ">",
+        "compare_to": 0
+      }
+    }
+  },
+  "viewing": {
+    "type": "origins:action_over_time",
+    "entity_action": {
+      "type": "origins:raycast",
+      "distance": 100,
+      "block": false,
+      "entity": true,
+      "shape_type": "visual",
+      "fluid_handling": "none",
+      "bientity_action": {
+        "type": "origins:if_else",
+        "condition": {
+          "type": "origins:actor_condition",
+          "condition": {
+            "type": "origins:resource",
+            "resource": "*:*_bar",
+            "comparison": ">=",
+            "compare_to": 300
+          }
+        },
+        "if_action": {
+          "type": "origins:and",
+          "actions": [
+            {
+              "type": "origins:actor_action",
+              "action": {
+                "type": "origins:change_resource",
+                "resource": "*:*_bar",
+                "change": 0,
+                "operation": "set"
+              }
+            },
+            {
+              "type": "origins:target_action",
+              "action": {
+                "type": "origins:delay",
+                "ticks": 20,
+                "action": {
+                  "type": "origins:apply_effect",
+                  "effects": [
+                    {
+                      "effect": "minecraft:slowness",
+                      "duration": 380,
+                      "is_ambient": false,
+                      "show_particles": false,
+                      "show_icon": true,
+                      "amplifier": 3
+                    },
+                    {
+                      "effect": "minecraft:darkness",
+                      "duration": 380,
+                      "is_ambient": false,
+                      "show_particles": false,
+                      "show_icon": true
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "type": "origins:target_action",
+              "action": {
+                "type": "origins:play_sound",
+                "sound": "minecraft:ambient.cave",
+                "category": "master",
+                "volume": 5,
+                "pitch": 2
+              }
+            },
+            {
+              "type": "origins:target_action",
+              "action": {
+                "type": "origins:spawn_particles",
+                "particle": {
+                  "type": "minecraft:block",
+                  "params": "minecraft:redstone_block"
+                },
+                "count": 30,
+                "speed": 0.5,
+                "force": true,
+                "spread": {
+                  "x": 0.25,
+                  "y": 0.25,
+                  "z": 0.25
+                }
+              }
+            },
+            {
+              "type": "origins:target_action",
+              "action": {
+                "type": "origins:execute_command",
+                "command": "execute facing entity @p[sort=nearest,tag=wr_watcher,limit=1,distance=1..] feet run tp ^ ^ ^"
+              }
+            }
+          ]
+        }
+      },
+      "hit_action": {
+        "type": "origins:if_else",
+        "condition": {
+          "type": "origins:sneaking"
+        },
+        "if_action": {
+          "type": "origins:change_resource",
+          "resource": "*:*_bar",
+          "change": 1
+        }
+      },
+      "miss_action": {
+        "type": "origins:change_resource",
+        "resource": "*:*_bar",
+        "change": -5
+      },
+      "command_step": 1,
+      "command_along_ray_only_on_hit": true
+    },
+    "interval": 1
+  }
+}

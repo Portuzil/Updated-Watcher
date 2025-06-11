@@ -1,0 +1,52 @@
+{
+  "name": "§c§nBlurry Vision",
+  "description": "Your Eyes are Sensitive to water. Being underwater blurs your vision",
+
+
+  "type": "origins:multiple",
+  "water": {
+    "type": "origins:overlay",
+    "texture": "minecraft:textures/block/tube_coral_block.png",
+    "strength": 0.9,
+    "red": 1.0,
+    "green": 0.0,
+    "blue": 0.0,
+    "draw_mode": "nausea",
+    "draw_phase": "below_hud",
+    "hide_with_hud": false,
+    "visible_in_third_person": true,
+    "condition": {
+      "type": "origins:submerged_in",
+      "fluid": "minecraft:water"
+    }
+  },
+  "water_blind": {
+    "type": "origins:stacking_status_effect",
+    "min_stacks": -9,
+    "max_stacks": 1,
+    "duration_per_stack": 100,
+    "tick_rate": 20,
+    "effects": [
+      {
+        "effect": "minecraft:weakness",
+        "duration": 40,
+        "is_ambient": false,
+        "show_particles": false,
+        "show_icon": false,
+        "amplifier": 1
+      },
+      {
+        "effect": "minecraft:darkness",
+        "duration": 40,
+        "is_ambient": false,
+        "show_particles": false,
+        "show_icon": false,
+        "amplifier": 1
+      }
+    ],
+    "condition": {
+      "type": "origins:submerged_in",
+      "fluid": "minecraft:water"
+    }
+  }
+}

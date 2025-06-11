@@ -1,0 +1,8 @@
+{
+    "replace": false,
+    "origins": [
+        "notpog:watcher"
+    ],
+    "enabled": true,
+    "allow_random": true
+}

@@ -1,0 +1,474 @@
+{
+  "name": "§a§nEye Spy",
+  "description": "You can see all...Anyone who is looking at you feels uneasy, gaining darkness and alerts you that they are watching...",
+
+  "badges": [
+    {
+      "type": "origins:tooltip",
+      "sprite": "minecraft:textures/item/ender_eye.png",
+      "text": "§aI see you..."
+    }
+  ],
+
+  "type": "origins:multiple",
+  "detect_seen_effects": {
+    "type": "origins:action_over_time",
+    "entity_action": {
+      "type": "origins:area_of_effect",
+      "radius": 100,
+      "bientity_action": {
+        "type": "origins:and",
+        "actions": [
+          {
+            "type": "origins:if_else_list",
+            "actions": [
+              {
+                "condition": {
+                  "type": "origins:distance",
+                  "comparison": "<=",
+                  "compare_to": 15
+                },
+                "action": {
+                  "type": "origins:and",
+                  "actions": [
+                    {
+                      "type": "origins:target_action",
+                      "action": {
+                        "type": "origins:execute_command",
+                        "command": "playsound minecraft:block.sculk_catalyst.bloom master @a[tag=wr_watcher] ~ ~ ~ 1 1"
+                      }
+                    },
+                    {
+                      "type": "origins:delay",
+                      "ticks": 5,
+                      "action": {
+                        "type": "origins:target_action",
+                        "action": {
+                          "type": "origins:execute_command",
+                          "command": "playsound minecraft:block.sculk_catalyst.bloom master @a[tag=wr_watcher] ~ ~ ~ 1 1"
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "condition": {
+                  "type": "origins:and",
+                  "conditions": [
+                    {
+                      "type": "origins:distance",
+                      "comparison": "<=",
+                      "compare_to": 18.75
+                    },
+                    {
+                      "type": "origins:distance",
+                      "comparison": ">",
+                      "compare_to": 15
+                    }
+                  ]
+                },
+                "action": {
+                  "type": "origins:and",
+                  "actions": [
+                    {
+                      "type": "origins:target_action",
+                      "action": {
+                        "type": "origins:execute_command",
+                        "command": "playsound minecraft:block.sculk_catalyst.bloom master @a[tag=wr_watcher] ~ ~ ~ 1.25 1"
+                      }
+                    },
+                    {
+                      "type": "origins:delay",
+                      "ticks": 5,
+                      "action": {
+                        "type": "origins:target_action",
+                        "action": {
+                          "type": "origins:execute_command",
+                          "command": "playsound minecraft:block.sculk_catalyst.bloom master @a[tag=wr_watcher] ~ ~ ~ 1.25 1"
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "condition": {
+                  "type": "origins:and",
+                  "conditions": [
+                    {
+                      "type": "origins:distance",
+                      "comparison": "<=",
+                      "compare_to": 22.5
+                    },
+                    {
+                      "type": "origins:distance",
+                      "comparison": ">",
+                      "compare_to": 18.75
+                    }
+                  ]
+                },
+                "action": {
+                  "type": "origins:and",
+                  "actions": [
+                    {
+                      "type": "origins:target_action",
+                      "action": {
+                        "type": "origins:execute_command",
+                        "command": "playsound minecraft:block.sculk_catalyst.bloom master @a[tag=wr_watcher] ~ ~ ~ 1.5 1"
+                      }
+                    },
+                    {
+                      "type": "origins:delay",
+                      "ticks": 5,
+                      "action": {
+                        "type": "origins:target_action",
+                        "action": {
+                          "type": "origins:execute_command",
+                          "command": "playsound minecraft:block.sculk_catalyst.bloom master @a[tag=wr_watcher] ~ ~ ~ 1.5 1"
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "condition": {
+                  "type": "origins:and",
+                  "conditions": [
+                    {
+                      "type": "origins:distance",
+                      "comparison": "<=",
+                      "compare_to": 26.25
+                    },
+                    {
+                      "type": "origins:distance",
+                      "comparison": ">",
+                      "compare_to": 22.5
+                    }
+                  ]
+                },
+                "action": {
+                  "type": "origins:and",
+                  "actions": [
+                    {
+                      "type": "origins:target_action",
+                      "action": {
+                        "type": "origins:execute_command",
+                        "command": "playsound minecraft:block.sculk_catalyst.bloom master @a[tag=wr_watcher] ~ ~ ~ 1.75 1"
+                      }
+                    },
+                    {
+                      "type": "origins:delay",
+                      "ticks": 5,
+                      "action": {
+                        "type": "origins:target_action",
+                        "action": {
+                          "type": "origins:execute_command",
+                          "command": "playsound minecraft:block.sculk_catalyst.bloom master @a[tag=wr_watcher] ~ ~ ~ 1.75 1"
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "condition": {
+                  "type": "origins:and",
+                  "conditions": [
+                    {
+                      "type": "origins:distance",
+                      "comparison": "<=",
+                      "compare_to": 30
+                    },
+                    {
+                      "type": "origins:distance",
+                      "comparison": ">",
+                      "compare_to": 26.25
+                    }
+                  ]
+                },
+                "action": {
+                  "type": "origins:and",
+                  "actions": [
+                    {
+                      "type": "origins:target_action",
+                      "action": {
+                        "type": "origins:execute_command",
+                        "command": "playsound minecraft:block.sculk_catalyst.bloom master @a[tag=wr_watcher] ~ ~ ~ 2 1"
+                      }
+                    },
+                    {
+                      "type": "origins:delay",
+                      "ticks": 5,
+                      "action": {
+                        "type": "origins:target_action",
+                        "action": {
+                          "type": "origins:execute_command",
+                          "command": "playsound minecraft:block.sculk_catalyst.bloom master @a[tag=wr_watcher] ~ ~ ~ 2 1"
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "condition": {
+                  "type": "origins:and",
+                  "conditions": [
+                    {
+                      "type": "origins:distance",
+                      "comparison": "<=",
+                      "compare_to": 33.75
+                    },
+                    {
+                      "type": "origins:distance",
+                      "comparison": ">",
+                      "compare_to": 30
+                    }
+                  ]
+                },
+                "action": {
+                  "type": "origins:and",
+                  "actions": [
+                    {
+                      "type": "origins:target_action",
+                      "action": {
+                        "type": "origins:execute_command",
+                        "command": "playsound minecraft:block.sculk_catalyst.bloom master @a[tag=wr_watcher] ~ ~ ~ 2.25 1"
+                      }
+                    },
+                    {
+                      "type": "origins:delay",
+                      "ticks": 5,
+                      "action": {
+                        "type": "origins:target_action",
+                        "action": {
+                          "type": "origins:execute_command",
+                          "command": "playsound minecraft:block.sculk_catalyst.bloom master @a[tag=wr_watcher] ~ ~ ~ 2.25 1"
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "condition": {
+                  "type": "origins:and",
+                  "conditions": [
+                    {
+                      "type": "origins:distance",
+                      "comparison": "<=",
+                      "compare_to": 37.5
+                    },
+                    {
+                      "type": "origins:distance",
+                      "comparison": ">",
+                      "compare_to": 33.75
+                    }
+                  ]
+                },
+                "action": {
+                  "type": "origins:and",
+                  "actions": [
+                    {
+                      "type": "origins:target_action",
+                      "action": {
+                        "type": "origins:execute_command",
+                        "command": "playsound minecraft:block.sculk_catalyst.bloom master @a[tag=wr_watcher] ~ ~ ~ 2.5 1"
+                      }
+                    },
+                    {
+                      "type": "origins:delay",
+                      "ticks": 5,
+                      "action": {
+                        "type": "origins:target_action",
+                        "action": {
+                          "type": "origins:execute_command",
+                          "command": "playsound minecraft:block.sculk_catalyst.bloom master @a[tag=wr_watcher] ~ ~ ~ 2.5 1"
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "condition": {
+                  "type": "origins:and",
+                  "conditions": [
+                    {
+                      "type": "origins:distance",
+                      "comparison": "<=",
+                      "compare_to": 41.25
+                    },
+                    {
+                      "type": "origins:distance",
+                      "comparison": ">",
+                      "compare_to": 37.5
+                    }
+                  ]
+                },
+                "action": {
+                  "type": "origins:and",
+                  "actions": [
+                    {
+                      "type": "origins:target_action",
+                      "action": {
+                        "type": "origins:execute_command",
+                        "command": "playsound minecraft:block.sculk_catalyst.bloom master @a[tag=wr_watcher] ~ ~ ~ 2.75 1"
+                      }
+                    },
+                    {
+                      "type": "origins:delay",
+                      "ticks": 5,
+                      "action": {
+                        "type": "origins:target_action",
+                        "action": {
+                          "type": "origins:execute_command",
+                          "command": "playsound minecraft:block.sculk_catalyst.bloom master @a[tag=wr_watcher] ~ ~ ~ 2.75 1"
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "condition": {
+                  "type": "origins:and",
+                  "conditions": [
+                    {
+                      "type": "origins:distance",
+                      "comparison": ">",
+                      "compare_to": 33.75
+                    }
+                  ]
+                },
+                "action": {
+                  "type": "origins:and",
+                  "actions": [
+                    {
+                      "type": "origins:target_action",
+                      "action": {
+                        "type": "origins:execute_command",
+                        "command": "playsound minecraft:block.sculk_catalyst.bloom master @a[tag=wr_watcher] ~ ~ ~ 3 1"
+                      }
+                    },
+                    {
+                      "type": "origins:delay",
+                      "ticks": 5,
+                      "action": {
+                        "type": "origins:target_action",
+                        "action": {
+                          "type": "origins:execute_command",
+                          "command": "playsound minecraft:block.sculk_catalyst.bloom master @a[tag=wr_watcher] ~ ~ ~ 3 1"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "type": "origins:target_action",
+            "action": {
+              "type": "origins:execute_command",
+              "command": "playsound minecraft:block.sculk_catalyst.bloom master @s ~ ~ ~ 1 1"
+            }
+          },
+          {
+            "type": "origins:delay",
+            "ticks": 5,
+            "action": {
+              "type": "origins:target_action",
+              "action": {
+                "type": "origins:execute_command",
+                "command": "playsound minecraft:block.sculk_catalyst.bloom master @s ~ ~ ~ 1 1"
+              }
+            }
+          },
+          {
+            "type": "origins:delay",
+            "ticks": 5,
+            "action": {
+              "type": "origins:target_action",
+              "action": {
+                "type": "origins:execute_command",
+                "command": "particle minecraft:crimson_spore ~ ~ ~ 0.25 0.25 0.25 0 15 force @a[tag=wr_watcher]"
+              }
+            }
+          },
+          {
+            "type": "origins:target_action",
+            "action": {
+              "type": "origins:apply_effect",
+              "effects": [
+                {
+                  "effect": "minecraft:darkness",
+                  "duration": 60,
+                  "is_ambient": false,
+                  "show_particles": false,
+                  "show_icon": true
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "bientity_condition": {
+        "type": "origins:and",
+        "conditions": [
+          {
+            "type": "origins:invert",
+            "condition": {
+              "type": "origins:actor_condition",
+              "condition": {
+                "type": "origins:raycast",
+                "distance": 100,
+                "block": false,
+                "entity": true,
+                "shape_type": "visual",
+                "fluid_handling": "any",
+
+                "hit_bientity_condition": {
+                  "type": "origins:target_condition",
+                  "condition": {
+                    "type": "origins:command",
+                    "command": "execute if entity @s[tag=wr_watcher]",
+                    "comparison": "==",
+                    "compare_to": 1
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "origins:target_condition",
+            "condition": {
+              "type": "origins:command",
+              "command": "execute unless entity @s[tag=wr_body]",
+              "comparison": "==",
+              "compare_to": 1
+            }
+          },
+          {
+            "type": "origins:target_condition",
+            "condition": {
+              "type": "origins:command",
+              "command": "execute unless entity @s[tag=wr_camera]",
+              "comparison": "==",
+              "compare_to": 1
+            }
+          },
+          {
+            "type": "origins:target_condition",
+            "condition": {
+              "type": "origins:living"
+            }
+          }
+        ]
+      }
+    },
+    "interval": 20
+  }
+}

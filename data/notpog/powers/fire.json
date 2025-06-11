@@ -1,0 +1,26 @@
+{
+  "name": "§c§nDry Eyes",
+  "description": "Your eyes are very sensitive to heat. You receive 5X fire damage as well as automatically burn in the nether unless you have Fire Protection IV on your chestplate",
+
+  "badges": [
+    {
+      "type": "origins:tooltip",
+      "sprite": "minecraft:textures/item/lava_bucket.png",
+      "text": "IT BURNSSS"
+    }
+  ],
+
+  "type": "origins:multiple",
+  "more_dmg": {
+    "type": "origins:modify_damage_taken",
+    "damage_condition": {
+      "type": "origins:in_tag",
+      "tag": "minecraft:is_fire"
+    },
+    "modifier": {
+      "name": "Weak to cursed items",
+      "operation": "multiply_base_multiplicative",
+      "value": 5
+    }
+  }
+}

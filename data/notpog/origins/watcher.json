@@ -1,0 +1,24 @@
+{
+  "powers": [
+    "notpog:camera",
+    "notpog:start",
+    "notpog:view_camera",
+    "notpog:mini_mode",
+    "notpog:stalk",
+    "notpog:scan",
+    "notpog:footsteps",
+    "notpog:being_seen",
+    "notpog:dark_buffs",
+    "notpog:food",
+    "notpog:fire",
+    "notpog:blurry_vision",
+    "notpog:isolation"
+  ],
+  "icon": {
+    "item": "minecraft:ender_eye"
+  },
+  "order": 99,
+  "impact": 3,
+  "name": "The Watcher",
+  "description":"A shy yet mischievous being covered in eyes from head to toe. This creature known as the Watcher stalks its prey and if its caught it has a few tricks up its sleeve to make a quick escape.\nThis origin will always keep others looking behind their backs"
+}

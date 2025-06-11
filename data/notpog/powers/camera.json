@@ -1,0 +1,532 @@
+{
+  "name": "§a§nEyelings",
+  "description": "Using Spider Eyes, you can place down §cEyelings§7. Each §cEyeling§7 will cost 1 Heart to place. Using §aPrimary§7, you can view from your §cEyeling's§7 Perspective or exit the viewing mode. Using §aRight Click§7, you can change which §cEyeling§7 you are viewing. Using §aPrimary§7 while sneaking while not viewing through your §cEyelings§7 will kill all §cEyelings§7. If you use §aPrimary§7 while sneaking while viewing, you will sacrifice all §cEyelings§7 to teleport to the current §cEyeling§7 you are possessing",
+
+  "badges": [
+    {
+      "type": "origins:tooltip",
+      "sprite": "minecraft:textures/item/spider_eye.png",
+      "text": "Tip: Try not to place Eyelings too close to eachother!"
+    }
+  ],
+
+  "type": "origins:multiple",
+  "camera_cd": {
+    "type": "origins:cooldown",
+    "cooldown": 5,
+    "hud_render": {
+      "should_render": false,
+      "bar_index": 3
+    }
+  },
+  "place_camera_down": {
+    "type": "origins:action_on_block_use",
+    "entity_action": {
+      "type": "origins:and",
+      "actions": [
+        {
+          "type": "origins:if_else",
+          "condition": {
+            "type": "origins:resource",
+            "resource": "*:view_camera_count",
+            "comparison": "==",
+            "compare_to": 0
+          },
+          "if_action": {
+            "type": "origins:delay",
+            "ticks": 1,
+            "action": {
+              "type": "origins:execute_command",
+              "command": "tag @e[sort=nearest,limit=1,tag=wr_camera] add wr_1"
+            }
+          }
+        },
+        {
+          "type": "origins:trigger_cooldown",
+          "power": "*:*_camera_cd"
+        },
+        {
+          "type": "origins:change_resource",
+          "resource": "*:view_camera_count",
+          "change": 1
+        }
+      ]
+    },
+    "block_action": {
+      "type": "origins:and",
+      "actions": [
+        {
+          "type": "origins:execute_command",
+          "command": "summon minecraft:villager ~ ~-1.5 ~ {DeathLootTable:\"minecraft:empty\",Team:wr_camera,Attributes:[{Name:\"generic.max_health\",Base:1f}],Health:1,Silent:1b,NoAI:1b,Age:-999999999,Tags:['wr_camera'],NoGravity:1b,ArmorItems:[{},{},{},{id:\"minecraft:player_head\",Count:1b,tag:{SkullOwner:{Id:[I;663314165,-1570092861,-1721646821,77754873],Properties:{textures:[{Value:\"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmFmMGJjNGEyMzdiZDIwMTZjZDdlOWZhMGExNWM5ZWY3MjJlMDc5OTcwODU0NTJkNjVmM2U4ZmFkODZjM2JkNSJ9fX0=\"}]}}}}]}"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "forceload add ~ ~ ~ ~"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "power grant @e[tag=wr_camera,sort=nearest] notpog:camera_powers"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "execute as @e[sort=nearest,limit=1,tag=wr_camera] run function notpog:grab_uuid"
+        }
+      ]
+    },
+    "directions": [
+      "down"
+    ],
+    "held_item_action": {
+      "type": "origins:consume",
+      "amount": 1
+    },
+    "item_condition": {
+      "type": "origins:ingredient",
+      "ingredient": {
+        "item": "minecraft:spider_eye"
+      }
+    },
+    "condition": {
+      "type": "origins:and",
+      "conditions": [
+        {
+          "type": "origins:resource",
+          "resource": "*:*_camera_cd",
+          "comparison": "==",
+          "compare_to": 0
+        },
+        {
+          "type": "origins:resource",
+          "resource": "*:view_camera_count",
+          "comparison": "<",
+          "compare_to": 5
+        }
+      ]
+    }
+  },
+  "place_camera_up": {
+    "type": "origins:action_on_block_use",
+    "entity_action": {
+      "type": "origins:and",
+      "actions": [
+        {
+          "type": "origins:if_else",
+          "condition": {
+            "type": "origins:resource",
+            "resource": "*:view_camera_count",
+            "comparison": "==",
+            "compare_to": 0
+          },
+          "if_action": {
+            "type": "origins:delay",
+            "ticks": 1,
+            "action": {
+              "type": "origins:execute_command",
+              "command": "tag @e[sort=nearest,limit=1,tag=wr_camera] add wr_1"
+            }
+          }
+        },
+        {
+          "type": "origins:trigger_cooldown",
+          "power": "*:*_camera_cd"
+        },
+        {
+          "type": "origins:change_resource",
+          "resource": "*:view_camera_count",
+          "change": 1
+        }
+      ]
+    },
+    "block_action": {
+      "type": "origins:and",
+      "actions": [
+        {
+          "type": "origins:execute_command",
+          "command": "summon minecraft:villager ~ ~-.2 ~ {DeathLootTable:\"minecraft:empty\",Team:wr_camera,Attributes:[{Name:\"generic.max_health\",Base:1f}],Health:1,Silent:1b,NoAI:1b,Age:-999999999,Tags:['wr_camera'],NoGravity:1b,ArmorItems:[{},{},{},{id:\"minecraft:player_head\",Count:1b,tag:{SkullOwner:{Id:[I;663314165,-1570092861,-1721646821,77754873],Properties:{textures:[{Value:\"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmFmMGJjNGEyMzdiZDIwMTZjZDdlOWZhMGExNWM5ZWY3MjJlMDc5OTcwODU0NTJkNjVmM2U4ZmFkODZjM2JkNSJ9fX0=\"}]}}}}]}"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "forceload add ~ ~ ~ ~"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "power grant @e[tag=wr_camera,sort=nearest] notpog:camera_powers"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "execute as @e[sort=nearest,limit=1,tag=wr_camera] run function notpog:grab_uuid"
+        }
+      ]
+    },
+    "directions": [
+      "up"
+    ],
+    "held_item_action": {
+      "type": "origins:consume",
+      "amount": 1
+    },
+    "item_condition": {
+      "type": "origins:ingredient",
+      "ingredient": {
+        "item": "minecraft:spider_eye"
+      }
+    },
+    "condition": {
+      "type": "origins:and",
+      "conditions": [
+        {
+          "type": "origins:resource",
+          "resource": "*:*_camera_cd",
+          "comparison": "==",
+          "compare_to": 0
+        },
+        {
+          "type": "origins:resource",
+          "resource": "*:view_camera_count",
+          "comparison": "<",
+          "compare_to": 5
+        }
+      ]
+    }
+  },
+  "place_camera_north": {
+    "type": "origins:action_on_block_use",
+    "entity_action": {
+      "type": "origins:and",
+      "actions": [
+        {
+          "type": "origins:if_else",
+          "condition": {
+            "type": "origins:resource",
+            "resource": "*:view_camera_count",
+            "comparison": "==",
+            "compare_to": 0
+          },
+          "if_action": {
+            "type": "origins:delay",
+            "ticks": 1,
+            "action": {
+              "type": "origins:execute_command",
+              "command": "tag @e[sort=nearest,limit=1,tag=wr_camera] add wr_1"
+            }
+          }
+        },
+        {
+          "type": "origins:trigger_cooldown",
+          "power": "*:*_camera_cd"
+        },
+        {
+          "type": "origins:change_resource",
+          "resource": "*:view_camera_count",
+          "change": 1
+        }
+      ]
+    },
+    "block_action": {
+      "type": "origins:and",
+      "actions": [
+        {
+          "type": "origins:execute_command",
+          "command": "summon minecraft:villager ~ ~-0.75 ~-0.6 {DeathLootTable:\"minecraft:empty\",Team:wr_camera,Attributes:[{Name:\"generic.max_health\",Base:1f}],Health:1,Silent:1b,NoAI:1b,Age:-999999999,Tags:['wr_camera'],NoGravity:1b,ArmorItems:[{},{},{},{id:\"minecraft:player_head\",Count:1b,tag:{SkullOwner:{Id:[I;663314165,-1570092861,-1721646821,77754873],Properties:{textures:[{Value:\"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmFmMGJjNGEyMzdiZDIwMTZjZDdlOWZhMGExNWM5ZWY3MjJlMDc5OTcwODU0NTJkNjVmM2U4ZmFkODZjM2JkNSJ9fX0=\"}]}}}}]}"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "forceload add ~ ~ ~ ~"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "power grant @e[tag=wr_camera,sort=nearest] notpog:camera_powers"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "execute as @e[sort=nearest,limit=1,tag=wr_camera] run function notpog:grab_uuid"
+        }
+      ]
+    },
+    "directions": [
+      "north"
+    ],
+    "held_item_action": {
+      "type": "origins:consume",
+      "amount": 1
+    },
+    "item_condition": {
+      "type": "origins:ingredient",
+      "ingredient": {
+        "item": "minecraft:spider_eye"
+      }
+    },
+    "condition": {
+      "type": "origins:and",
+      "conditions": [
+        {
+          "type": "origins:resource",
+          "resource": "*:*_camera_cd",
+          "comparison": "==",
+          "compare_to": 0
+        },
+        {
+          "type": "origins:resource",
+          "resource": "*:view_camera_count",
+          "comparison": "<",
+          "compare_to": 5
+        }
+      ]
+    }
+  },
+  "place_camera_south": {
+    "type": "origins:action_on_block_use",
+    "entity_action": {
+      "type": "origins:and",
+      "actions": [
+        {
+          "type": "origins:if_else",
+          "condition": {
+            "type": "origins:resource",
+            "resource": "*:view_camera_count",
+            "comparison": "==",
+            "compare_to": 0
+          },
+          "if_action": {
+            "type": "origins:delay",
+            "ticks": 1,
+            "action": {
+              "type": "origins:execute_command",
+              "command": "tag @e[sort=nearest,limit=1,tag=wr_camera] add wr_1"
+            }
+          }
+        },
+        {
+          "type": "origins:trigger_cooldown",
+          "power": "*:*_camera_cd"
+        },
+        {
+          "type": "origins:change_resource",
+          "resource": "*:view_camera_count",
+          "change": 1
+        }
+      ]
+    },
+    "block_action": {
+      "type": "origins:and",
+      "actions": [
+        {
+          "type": "origins:execute_command",
+          "command": "summon minecraft:villager ~ ~-0.75 ~0.6 {DeathLootTable:\"minecraft:empty\",Team:wr_camera,Attributes:[{Name:\"generic.max_health\",Base:1f}],Health:1,Silent:1b,NoAI:1b,Age:-999999999,Tags:['wr_camera'],NoGravity:1b,ArmorItems:[{},{},{},{id:\"minecraft:player_head\",Count:1b,tag:{SkullOwner:{Id:[I;663314165,-1570092861,-1721646821,77754873],Properties:{textures:[{Value:\"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmFmMGJjNGEyMzdiZDIwMTZjZDdlOWZhMGExNWM5ZWY3MjJlMDc5OTcwODU0NTJkNjVmM2U4ZmFkODZjM2JkNSJ9fX0=\"}]}}}}]}"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "forceload add ~ ~ ~ ~"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "power grant @e[tag=wr_camera,sort=nearest] notpog:camera_powers"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "execute as @e[sort=nearest,tag=wr_camera,limit=1] run function notpog:grab_uuid"
+        }
+      ]
+    },
+    "directions": [
+      "south"
+    ],
+    "held_item_action": {
+      "type": "origins:consume",
+      "amount": 1
+    },
+    "item_condition": {
+      "type": "origins:ingredient",
+      "ingredient": {
+        "item": "minecraft:spider_eye"
+      }
+    },
+    "condition": {
+      "type": "origins:and",
+      "conditions": [
+        {
+          "type": "origins:resource",
+          "resource": "*:*_camera_cd",
+          "comparison": "==",
+          "compare_to": 0
+        },
+        {
+          "type": "origins:resource",
+          "resource": "*:view_camera_count",
+          "comparison": "<",
+          "compare_to": 5
+        }
+      ]
+    }
+  },
+  "place_camera_west": {
+    "type": "origins:action_on_block_use",
+    "entity_action": {
+      "type": "origins:and",
+      "actions": [
+        {
+          "type": "origins:if_else",
+          "condition": {
+            "type": "origins:resource",
+            "resource": "*:view_camera_count",
+            "comparison": "==",
+            "compare_to": 0
+          },
+          "if_action": {
+            "type": "origins:delay",
+            "ticks": 1,
+            "action": {
+              "type": "origins:execute_command",
+              "command": "tag @e[sort=nearest,limit=1,tag=wr_camera] add wr_1"
+            }
+          }
+        },
+        {
+          "type": "origins:trigger_cooldown",
+          "power": "*:*_camera_cd"
+        },
+        {
+          "type": "origins:change_resource",
+          "resource": "*:view_camera_count",
+          "change": 1
+        }
+      ]
+    },
+    "block_action": {
+      "type": "origins:and",
+      "actions": [
+        {
+          "type": "origins:execute_command",
+          "command": "summon minecraft:villager ~-0.6 ~-0.75 ~ {DeathLootTable:\"minecraft:empty\",Team:wr_camera,Attributes:[{Name:\"generic.max_health\",Base:1f}],Health:1,Silent:1b,NoAI:1b,Age:-999999999,Tags:['wr_camera'],NoGravity:1b,ArmorItems:[{},{},{},{id:\"minecraft:player_head\",Count:1b,tag:{SkullOwner:{Id:[I;663314165,-1570092861,-1721646821,77754873],Properties:{textures:[{Value:\"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmFmMGJjNGEyMzdiZDIwMTZjZDdlOWZhMGExNWM5ZWY3MjJlMDc5OTcwODU0NTJkNjVmM2U4ZmFkODZjM2JkNSJ9fX0=\"}]}}}}]}"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "forceload add ~ ~ ~ ~"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "power grant @e[tag=wr_camera,sort=nearest] notpog:camera_powers"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "execute as @e[sort=nearest,limit=1,tag=wr_camera] run function notpog:grab_uuid"
+        }
+      ]
+    },
+    "directions": [
+      "west"
+    ],
+    "held_item_action": {
+      "type": "origins:consume",
+      "amount": 1
+    },
+    "item_condition": {
+      "type": "origins:ingredient",
+      "ingredient": {
+        "item": "minecraft:spider_eye"
+      }
+    },
+    "condition": {
+      "type": "origins:and",
+      "conditions": [
+        {
+          "type": "origins:resource",
+          "resource": "*:*_camera_cd",
+          "comparison": "==",
+          "compare_to": 0
+        },
+        {
+          "type": "origins:resource",
+          "resource": "*:view_camera_count",
+          "comparison": "<",
+          "compare_to": 5
+        }
+      ]
+    }
+  },
+  "place_camera_east": {
+    "type": "origins:action_on_block_use",
+    "entity_action": {
+      "type": "origins:and",
+      "actions": [
+        {
+          "type": "origins:if_else",
+          "condition": {
+            "type": "origins:resource",
+            "resource": "*:view_camera_count",
+            "comparison": "==",
+            "compare_to": 0
+          },
+          "if_action": {
+            "type": "origins:delay",
+            "ticks": 1,
+            "action": {
+              "type": "origins:execute_command",
+              "command": "tag @e[sort=nearest,limit=1,tag=wr_camera] add wr_1"
+            }
+          }
+        },
+        {
+          "type": "origins:trigger_cooldown",
+          "power": "*:*_camera_cd"
+        },
+        {
+          "type": "origins:change_resource",
+          "resource": "*:view_camera_count",
+          "change": 1
+        }
+      ]
+    },
+    "block_action": {
+      "type": "origins:and",
+      "actions": [
+        {
+          "type": "origins:execute_command",
+          "command": "summon minecraft:villager ~0.6 ~-0.75 ~ {DeathLootTable:\"minecraft:empty\",Team:wr_camera,Attributes:[{Name:\"generic.max_health\",Base:1f}],Health:1,Silent:1b,NoAI:1b,Age:-999999999,Tags:['wr_camera'],NoGravity:1b,ArmorItems:[{},{},{},{id:\"minecraft:player_head\",Count:1b,tag:{SkullOwner:{Id:[I;663314165,-1570092861,-1721646821,77754873],Properties:{textures:[{Value:\"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmFmMGJjNGEyMzdiZDIwMTZjZDdlOWZhMGExNWM5ZWY3MjJlMDc5OTcwODU0NTJkNjVmM2U4ZmFkODZjM2JkNSJ9fX0=\"}]}}}}]}"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "forceload add ~ ~ ~ ~"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "power grant @e[tag=wr_camera,sort=nearest] notpog:camera_powers"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "execute as @e[sort=nearest,limit=1,tag=wr_camera] run function notpog:grab_uuid"
+        }
+      ]
+    },
+    "directions": [
+      "east"
+    ],
+    "held_item_action": {
+      "type": "origins:consume",
+      "amount": 1
+    },
+    "item_condition": {
+      "type": "origins:ingredient",
+      "ingredient": {
+        "item": "minecraft:spider_eye"
+      }
+    },
+    "condition": {
+      "type": "origins:and",
+      "conditions": [
+        {
+          "type": "origins:resource",
+          "resource": "*:*_camera_cd",
+          "comparison": "==",
+          "compare_to": 0
+        },
+        {
+          "type": "origins:resource",
+          "resource": "*:view_camera_count",
+          "comparison": "<",
+          "compare_to": 5
+        }
+      ]
+    }
+  }
+}

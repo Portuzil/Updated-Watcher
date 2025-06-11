@@ -1,0 +1,15 @@
+{
+  "name": "§a§nLurker",
+  "description": "You do not make noise when walking",
+
+  "badges": [
+    {
+      "type": "origins:tooltip",
+      "sprite": "minecraft:textures/item/iron_boots.png",
+      "text": "§aSneaky Sneaky..."
+    }
+  ],
+
+  "type": "origins:prevent_game_event",
+  "event": "minecraft:step"
+}
